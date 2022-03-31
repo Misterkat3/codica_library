@@ -1,0 +1,49 @@
+.container
+  .row
+    .col-md-8
+      %h1.text-center
+        = @author.name
+      %h2
+        Biography
+      %span
+        = @author.bio
+  %h2 Books
+  %hr
+  .books-list
+    - @author.books.each do |book|
+      .card.book-element
+        .book-image
+          = image_tag book.cover.present? ? book.cover : 'http://via.placeholder.com/230x300', class: 'card-img-top'
+        .card-body
+          %h5.card-title
+            = book.title
+          %p.card-text
+            = book.description.try(:truncate, 50)
+          = link_to 'Show', book_path(book), class: 'btn btn-primary'
+:css
+  .books-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .book-element {
+    width: 25rem;
+    margin: 10px;
+  }
+
+  .book-image {
+    height: 100%;
+    position: absolute;
+  }
+
+  .book-image img { height: 100%; }
+
+  .book-element .card-body {
+    width: 60%;
+    margin-left: 40%;
+  }
+
+  .book-element-show-more {
+    width: 10rem;
+    margin: 10px;
+  }

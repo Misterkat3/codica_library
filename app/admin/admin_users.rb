@@ -1,5 +1,10 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
+  permit_params do
+    permitted = [:email]
+    permitted += [:password, :password_confirmation] if params[:password].present?
+
+    permitted
+  end
 
   index do
     selectable_column
@@ -12,9 +17,6 @@ ActiveAdmin.register AdminUser do
   end
 
   filter :email
-  filter :current_sign_in_at
-  filter :sign_in_count
-  filter :created_at
 
   form do |f|
     f.inputs do

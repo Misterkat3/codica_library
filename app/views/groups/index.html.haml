@@ -1,0 +1,50 @@
+.container
+  - @groups.each do |group|
+    %h2
+      = group.title
+    %hr
+    .books-list
+      - group.books.first(2).each do |book|
+        .card.book-element
+          .book-image
+            = image_tag book.cover.present? ? book.cover : 'http://via.placeholder.com/230x300', class: 'card-img-top'
+          .card-body
+            %h5.card-title
+              = book.title
+            %p.card-text
+              = book.description.try(:truncate, 50)
+            = link_to 'Show', book_path(book), class: 'btn btn-primary'
+      .card.book-element-show-more
+        .card-body
+          %h5.card-title
+            Show more in
+            %strong
+              = group.title
+          = link_to 'Explore...', group_path(group), class: 'btn btn-success'
+:css
+  .books-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .book-element {
+    width: 25rem;
+    margin: 10px;
+  }
+
+  .book-image {
+    height: 100%;
+    position: absolute;
+  }
+
+  .book-image img { height: 100%; }
+
+  .book-element .card-body {
+    width: 60%;
+    margin-left: 40%;
+  }
+
+  .book-element-show-more {
+    width: 10rem;
+    margin: 10px;
+  }

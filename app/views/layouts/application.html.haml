@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Codica Library
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %main
+      .container
+
+        %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+          .container-fluid.col-mb-11
+            = link_to 'Codica library', root_path, class: 'navbar-brand'
+            %button.navbar-toggler{"aria-controls" => "navbarNavAltMarkup", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavAltMarkup", "data-bs-toggle" => "collapse", :type => "button"}
+              %span.navbar-toggler-icon
+            #navbarNavAltMarkup.collapse.navbar-collapse
+              .navbar-nav
+                = link_to 'Home', root_path, class: "nav-link #{'active' if current_page?(root_path)}"
+                = link_to 'Groups', groups_path, class: "nav-link #{'active' if current_page?(groups_path)}"
+                = link_to 'Authors', authors_path, class: "nav-link #{'active' if current_page?(authors_path)}"
+          .col-md-1
+            .navbar-nav{style: 'text-align: right'}
+              = link_to 'Admin', '/admin', class: 'nav-link'
+        %p.notice= notice
+        %p.alert= alert
+      = yield
