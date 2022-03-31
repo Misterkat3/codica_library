@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch("DB_HOST") { 'localhost' } %>
+  database: <%= ENV.fetch("DB_NAME") { 'codica_library' } %>
+  username: <%= ENV.fetch("DB_USERNAME") { 'codica_library' } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { 'password' } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("DB_TEST_NAME") { 'codica_library_test' } %>
+
+production:
+  <<: *default
