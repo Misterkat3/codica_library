@@ -31,7 +31,7 @@ ActiveAdmin.register Book do
       row :title
       row :description
       row :cover do |object|
-        image_tag url_for(object.cover) if object.cover.present?
+        image_tag url_for(object.cover), style: 'width: 200px' if object.cover.present?
       end
     end
   end

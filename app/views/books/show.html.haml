@@ -1,9 +1,13 @@
 .container
   .row
     .col-md-4
-      = image_tag @book.cover.present? ? @book.cover : 'http://via.placeholder.com/230x300'
+      = image_tag @book.cover.present? ? @book.cover : 'http://via.placeholder.com/230x300', class: 'book-cover'
     .col-md-8
       %h1
         = @book.title
       %span
         = @book.description
+:css
+  .book-cover {
+    width: 100%;
+  }
