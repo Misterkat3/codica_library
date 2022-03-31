@@ -1,9 +1,11 @@
 ActiveAdmin.register AdminUser do
-  permit_params do
-    permitted = [:email]
-    permitted += [:password, :password_confirmation] if params[:password].present?
+  permit_params :email, :password, :password_confirmation
 
-    permitted
+  controller do
+    def update_resource(object, attributes)
+      update_method = attributes.first[:password].present? ? :update_attributes : :update_without_password
+      object.send(update_method, *attributes)
+    end
   end
 
   index do
