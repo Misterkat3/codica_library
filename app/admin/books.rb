@@ -3,6 +3,11 @@ ActiveAdmin.register Book do
                 author_ids: [],
                 group_ids: []
 
+  filter :authors
+  filter :groups
+  filter :title
+  filter :description
+
   index do
     selectable_column
     column :title

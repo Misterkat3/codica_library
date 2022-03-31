@@ -1,6 +1,10 @@
 ActiveAdmin.register Author do
   permit_params :name, :bio, books_ids: []
 
+  filter :books
+  filter :name
+  filter :bio
+
   index do
     selectable_column
     column :name
